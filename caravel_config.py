@@ -11,3 +11,6 @@ else:
     logging.getLogger().warn('Falling back to SQLite database.')
     SQLALCHEMY_DATABASE_URI = 'sqlite:////home/caravel/db/caravel.db'
 logging.getLogger().info('Using SQLALCHEMY_DATABASE_URI: {}'.format(SQLALCHEMY_DATABASE_URI))
+
+
+DRUID_IS_ACTIVE = False
