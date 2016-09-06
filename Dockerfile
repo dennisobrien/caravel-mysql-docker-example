@@ -1,4 +1,5 @@
 FROM python:2.7.11
+# Based on https://github.com/kochalex/caravel-docker
 
 # Install caravel
 RUN pip install caravel==0.10.0 PyMySQL==0.7.8
