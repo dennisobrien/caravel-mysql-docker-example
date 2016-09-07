@@ -18,5 +18,8 @@ caravel init
 echo "Loading Caravel examples"
 caravel load_examples
 
+echo "Running some debug diagnostics on the database"
+python conf/debug_db.py
+
 echo "Starting Caravel server"
 caravel runserver -p 8088 -d
