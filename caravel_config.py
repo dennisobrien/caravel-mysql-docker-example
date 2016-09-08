@@ -13,12 +13,13 @@ if os.environ.get('SQLALCHEMY_DATABASE_URI', None):
     SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
 else:
     logging.getLogger().warn('Falling back to SQLite database.')
-    SQLALCHEMY_DATABASE_URI = 'sqlite:////home/caravel/db/caravel.db'
-    os.environ['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
-    # create the directory if needed
-    db_dir = '/home/caravel/db'
+    db_dir = os.path.expanduser('~/tmp')
     if not os.path.isdir(db_dir):
         os.makedirs(db_dir)
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///{db_dir}/caravel.db'.format(db_dir=db_dir)
+    os.environ['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+    # create the directory if needed
+
 
 logging.getLogger().info('Using SQLALCHEMY_DATABASE_URI: {}'.format(SQLALCHEMY_DATABASE_URI))
 
