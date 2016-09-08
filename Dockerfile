@@ -4,10 +4,10 @@ FROM python:2.7.11
 #==============================================================================
 # Install caravel
 # Option 1:  Install from pypi
-#RUN pip install caravel==0.10.0 PyMySQL==0.7.8
+#RUN pip install caravel==0.10.0 PyMySQL==0.7.8 mysqlclient==1.3.7 psycopg2==2.6.1 cryptography==1.4 ipython==4.2.0
 # Option 2:  Build from source (this takes a long time)
 # install some required modules and packages
-RUN pip install PyMySQL==0.7.8 mysqlclient==1.3.7 psycopg2==2.6.1 cryptography==1.4
+RUN pip install PyMySQL==0.7.8 mysqlclient==1.3.7 psycopg2==2.6.1 cryptography==1.4 ipython==4.2.0
 RUN apt-get update && apt-get install -y build-essential libsasl2-dev
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
     apt-get install -y nodejs
