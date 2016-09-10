@@ -5,6 +5,8 @@ Example of using docker and docker-compose to start Caravel using MySQL.
 my inability to initialize the example datasets when using a persistent
 metadata store (in this case MySQL).
 
+https://github.com/airbnb/caravel/issues/1070
+
 ## Requirements
 
 - docker
@@ -25,5 +27,6 @@ $ docker-compose down --volumes
 This is for testing initialization of the metadata stores.  Alter
 appropriately for other purposes.
 
-Caravel is now reachable at [http://localhost:8088/](http://localhost:8088/)
+When the containers are started, Caravel will be reachable at
+[http://localhost:8088/](http://localhost:8088/)
 
