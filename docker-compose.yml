@@ -10,17 +10,16 @@ services:
     depends_on:
     - db
     environment:
-      SQLALCHEMY_DATABASE_URI: mysql://root@db/db
+      SQLALCHEMY_DATABASE_URI: mysql://mysqladmin:FIXME_12345@db/db
     entrypoint: ./wait-for-it.sh db:3306 -- ./docker-entrypoint.sh
   
   db:
     image: mysql:5.7
     environment:
-#      MYSQL_ROOT_PASSWORD: FIXME_1234567890
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_ROOT_PASSWORD: FIXME_1234567890
       MYSQL_DATABASE: db
-#      MYSQL_USER: mysqladmin
-#      MYSQL_PASSWORD: FIXME_12345
+      MYSQL_USER: mysqladmin
+      MYSQL_PASSWORD: FIXME_12345
       MYSQL_PORT: 3306
     ports:
     - "3306:3306"
