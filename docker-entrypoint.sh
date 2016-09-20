@@ -7,7 +7,7 @@ pip freeze
 
 echo "Creating Caravel admin user"
 fabmanager create-admin --app caravel --username admin --firstname The --lastname Admin \
-  --email admin@example.com --password FIXME_FIXME_FIXME
+  --email admin@example.com --password FIXME
 
 echo "Upgrading Caravel database"
 caravel db upgrade

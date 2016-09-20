@@ -4,7 +4,7 @@ FROM continuumio/miniconda:latest
 #==============================================================================
 # Install caravel
 # First, install some packages required for the build
-RUN apt-get update && apt-get install -y build-essential libmysqlclient-dev libsasl2-dev
+RUN apt-get update && apt-get install -y build-essential libmysqlclient-dev libpq-dev libsasl2-dev libffi-dev
 # Option 1:  Install from pypi
 #RUN pip install caravel==0.10.0 PyMySQL==0.7.8 mysqlclient==1.3.7 psycopg2==2.6.1 cryptography==1.4 ipython==4.2.0
 # Option 2:  Build from source (this takes a long time)

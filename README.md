@@ -68,3 +68,93 @@ In [2]: s = db.session()
 In [3]: db_obj = s.query(models.Database).first()
 
 ```
+
+## Testing with MySQL in Docker
+
+I wanted to use PyCharm for interactive debugging of Caravel with a
+mysql database.  Here are my notes for my future self.
+
+Note:  PyCharm can use the interpreter in a Docker container and that is
+probably the best way to do this.  It's on my list.<br>
+https://blog.jetbrains.com/pycharm/2015/12/using-docker-in-pycharm/
+
+Start a mysql docker container:
+```
+$ docker run --name caravel-mysql -p 3306:3306 \
+ -e MYSQL_ROOT_PASSWORD=FIXME_1234567890 -e MYSQL_DATABASE=db \
+ -e MYSQL_USER=mysqladmin -e MYSQL_PASSWORD=FIXME_12345 \
+ -e MYSQL_PORT=3306 -d mysql:5.7
+```
+
+Attach to that container with the mysql client.
+```
+$ docker exec -it caravel-mysql mysql --user=mysqladmin --password=FIXME_12345 db
+```
+
+Poke around the database.
+```
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| db                 |
++--------------------+
+2 rows in set (0.00 sec)
+
+mysql> use db;
+Database changed
+mysql> show tables
+    -> ;
+Empty set (0.00 sec)
+
+mysql> show tables;
++-------------------------+
+| Tables_in_db            |
++-------------------------+
+| ab_permission           |
+| ab_permission_view      |
+| ab_permission_view_role |
+| ab_register_user        |
+| ab_role                 |
+| ab_user                 |
+| ab_user_role            |
+| ab_view_menu            |
+| alembic_version         |
+| birth_names             |
+| clusters                |
+| columns                 |
+| css_templates           |
+| dashboard_slices        |
+| dashboard_user          |
+| dashboards              |
+| datasources             |
+| dbs                     |
+| energy_usage            |
+| favstar                 |
+| logs                    |
+| long_lat                |
+| metrics                 |
+| multiformat_time_series |
+| query                   |
+| random_time_series      |
+| slice_user              |
+| slices                  |
+| sql_metrics             |
+| table_columns           |
+| tables                  |
+| url                     |
+| wb_health_population    |
++-------------------------+
+33 rows in set (0.00 sec)
+
+```
+
+Tear it all down.
+
+```
+$ docker stop caravel-mysql
+caravel-mysql
+$ docker rm caravel-mysql
+caravel-mysql
+```
